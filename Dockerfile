@@ -10,10 +10,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["QR code project/QR code project.csproj", "QR code project/"]
-RUN dotnet restore "QR code project/QR code project.csproj"
+COPY ["QR code project.csproj", "."]
+RUN dotnet restore "./QR code project.csproj"
 COPY . .
-WORKDIR "/src/QR code project"
+WORKDIR "/src/."
 RUN dotnet build "QR code project.csproj" -c Release -o /app/build
 
 FROM build AS publish
